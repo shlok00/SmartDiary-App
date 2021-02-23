@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/abel</item>
+        <item>@font/amatica_sc</item>
+        <item>@font/amatica_sc_bold</item>
+        <item>@font/chewy</item>
+        <item>@font/montserrat_alternates</item>
+        <item>@font/paprika</item>
+    </array>
+</resources>
