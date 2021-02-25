@@ -108,7 +108,7 @@ class DiaryFragment : Fragment() {
                        enhi.translate(speechv.text.toString())
                         .addOnSuccessListener { translatedText ->
                             speechv.setText(translatedText)
-                            Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                            //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
                         }
                         .addOnFailureListener { exception ->
                             Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
@@ -126,7 +126,7 @@ class DiaryFragment : Fragment() {
                     hien.translate(speechv.text.toString())
                             .addOnSuccessListener { translatedText ->
                                 speechv.setText(translatedText)
-                                Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                               //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
                             }
                             .addOnFailureListener { exception ->
                                 Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
@@ -138,6 +138,20 @@ class DiaryFragment : Fragment() {
 
         }
 
+        var clearbut = getView()?.findViewById(R.id.button2) as Button
+        clearbut.setOnClickListener {
+            var s = speechv.text.toString()
+            speechv.setText("")
+        }
+
+        var savebut = getView()?.findViewById(R.id.button) as Button
+        savebut.setOnClickListener {
+            var s = speechv.text.toString()
+            speechv.setText("")
+        }
+
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -147,7 +161,8 @@ class DiaryFragment : Fragment() {
         {
             100 -> {if(resultCode== Activity.RESULT_OK && data!=null){
                 var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                speechv.setText(result?.get(0))
+                var s = speechv.text.toString()
+                speechv.setText(s +" "+ result?.get(0))
 
             }}
         }
