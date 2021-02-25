@@ -1,5 +1,6 @@
 package com.example.ml_app
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -14,9 +15,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
-import android.widget.TextView
+import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.common.model.RemoteModelManager
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.TranslateRemoteModel
+import com.google.mlkit.nl.translate.Translation
+import com.google.mlkit.nl.translate.TranslatorOptions
 import org.w3c.dom.Text
 import java.util.*
 
@@ -40,10 +47,11 @@ class DiaryFragment : Fragment() {
 
     })}
 
+    @SuppressLint("WrongViewCast")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val speechv : TextView = getView()?.findViewById(R.id.voiceInput) as TextView
+        val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
         var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en")
@@ -77,17 +85,56 @@ class DiaryFragment : Fragment() {
         }
 
         var a = 0
+
+        val source = speechv.text.toString()
+        val options = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(TranslateLanguage.HINDI)
+                .build()
+        val enhi = Translation.getClient(options)
+        val options2 = TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.HINDI)
+                .setTargetLanguage(TranslateLanguage.ENGLISH)
+                .build()
+        val hien = Translation.getClient(options2)
+
         var transbutton = getView()?.findViewById(R.id.btntran) as ImageButton
         transbutton.setOnClickListener {
             if(a%2==0)
             {   a+=1
                 transbutton.setBackgroundResource(R.drawable.gradhin)
+                   if(speechv.text.toString() != null){
+                      // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
+                       enhi.translate(speechv.text.toString())
+                        .addOnSuccessListener { translatedText ->
+                            speechv.setText(translatedText)
+                            Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                        }}
+
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"hi")
+                ttsc.language = Locale.forLanguageTag("hi")
+
             }
             else
             {   a+=1
                 transbutton.setBackgroundResource(R.drawable.gradients)
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en")}
+                if(speechv.text.toString() != null){
+                    // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
+                    hien.translate(speechv.text.toString())
+                            .addOnSuccessListener { translatedText ->
+                                speechv.setText(translatedText)
+                                Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                            }}
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en")
+                ttsc.language = Locale.forLanguageTag("en")
+
+            }
 
         }
 
@@ -95,12 +142,13 @@ class DiaryFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val speechv : TextView = getView()?.findViewById(R.id.voiceInput) as TextView
+        val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
         when (requestCode)
         {
             100 -> {if(resultCode== Activity.RESULT_OK && data!=null){
                 var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                 speechv.setText(result?.get(0))
+
             }}
         }
     }

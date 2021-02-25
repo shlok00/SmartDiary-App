@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "525987553677",
+    "project_id": "voicediaryapp",
+    "storage_bucket": "voicediaryapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525987553677:android:5f00c1f30c08bb0254ddc4",
+        "android_client_info": {
+          "package_name": "com.example.ml_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525987553677-grb2kd5qc85h795b6mn9im61skbfafsa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ml_app",
+            "certificate_hash": "78ee447437f0bd990205919a2a3b379e2603965b"
+          }
+        },
+        {
+          "client_id": "525987553677-bgijakrqebv9shen84bdotjtc4kk43rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAesUWX2X6wYJ1Z194zCOwYSJXjVNi0TMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525987553677-bgijakrqebv9shen84bdotjtc4kk43rb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

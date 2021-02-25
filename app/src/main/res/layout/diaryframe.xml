@@ -14,12 +14,13 @@
         android:layout_marginBottom="20dp"
         android:padding="20dp">
 
-        <TextView
+        <EditText
             android:id="@+id/voiceInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="casual"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            />
     </ScrollView>
 
     <RelativeLayout
