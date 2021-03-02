@@ -12,10 +12,7 @@ import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
-import android.widget.EditText
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.mlkit.common.model.DownloadConditions
@@ -25,6 +22,7 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -51,6 +49,9 @@ class DiaryFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val currentTime: String = SimpleDateFormat("EEE, d MMM yyyy, HH:mm aaa", Locale.getDefault()).format(Date())
+        val datehead : TextView = getView()?.findViewById(R.id.datehead) as TextView
+        datehead.setText(currentTime)
         val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
         var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)

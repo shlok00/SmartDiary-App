@@ -4,8 +4,8 @@
     <!--  Gradient Bg for listrow -->
     <gradient
         android:startColor="#000000"
-        android:centerColor="#230B49"
-        android:endColor="#4D247A"
+        android:centerColor="#32025C"
+        android:endColor="#5120AC"
         android:angle="90" />
 
 </shape>
