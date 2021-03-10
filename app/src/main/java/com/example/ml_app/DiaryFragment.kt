@@ -64,7 +64,7 @@ class DiaryFragment : Fragment() {
 
         }
 
-
+        var b=2
         var speakerbutton = getView()?.findViewById(R.id.btntext) as ImageButton
         speakerbutton.setOnClickListener {
             val textsp = speechv.text.toString().trim()
@@ -72,7 +72,19 @@ class DiaryFragment : Fragment() {
             if (textsp.isNotEmpty())
             {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                {ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null, "a")}
+                {
+                    if(b%2==0)
+                    {   b+=1
+                        ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null, "a")
+                        speakerbutton.setBackgroundResource(R.drawable.gradhin)
+                    }
+                    else if(b%2!=0)
+                    {   b+=1
+                        ttsc.stop()
+                        speakerbutton.setBackgroundResource(R.drawable.gradients)
+                    }
+                     }
+
                 else
                 {ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null)}
             }
@@ -150,6 +162,7 @@ class DiaryFragment : Fragment() {
 
 
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

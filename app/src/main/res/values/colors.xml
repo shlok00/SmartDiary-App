@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="book_loading_background">#005162D3</color>
+    <color name="book_loading_book">#FFFFFF</color>
+    <color name="book_loading_page">#1B0043</color>
 </resources>

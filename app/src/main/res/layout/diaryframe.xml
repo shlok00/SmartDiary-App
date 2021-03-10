@@ -8,12 +8,12 @@
     >
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="416dp"
+        android:layout_width="714dp"
+        android:layout_height="966dp"
         android:layout_above="@+id/btnSpeakContainer"
         android:layout_alignParentTop="true"
         android:layout_marginTop="65dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="81dp"
         android:clickable="true"
         android:overScrollMode="ifContentScrolls"
         android:padding="20dp"
@@ -26,8 +26,10 @@
             android:layout_height="match_parent"
             android:background="@drawable/textborder2"
             android:fontFamily="casual"
+            android:hint="Type something!"
             android:padding="10dp"
-            android:textColor="#EBCCFF"
+            android:textColor="#EBCBFF"
+            android:textStyle="bold"
             android:textSize="15sp">
 
         </EditText>
@@ -143,7 +145,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -164,6 +166,7 @@
             android:background="@drawable/gradheads"
             android:fontFamily="@font/paprika"
             android:padding="14dp"
+            android:shadowColor="#000000"
             android:text="TextView"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
