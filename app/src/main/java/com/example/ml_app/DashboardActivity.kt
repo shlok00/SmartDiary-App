@@ -8,6 +8,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import android.content.Intent
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import com.example.ml_app.DiaryFragment.Companion.newInstance
 import java.lang.reflect.Array.newInstance
@@ -18,7 +20,13 @@ public class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar()?.hide(); // hide the title bar
+        this.getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dashboard);
+
 
         val bottomNavigation = findViewById(R.id.bottomnav) as MeowBottomNavigation
         addFragment(DiaryFragment.newInstance())

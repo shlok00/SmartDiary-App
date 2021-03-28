@@ -9,29 +9,32 @@
     tools:context=".SearchFragment">
 
     <SearchView
+        android:id="@+id/searchbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/textborder2"
-        android:layout_marginRight="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_alignParentTop="true"
-        android:queryHint="Search Entries"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/textborder2"
+        android:queryHint="Search Entries" />
 
-   <!-- <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="70dp"> -->
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/Colors"
-            android:divider="#70ffffff"
-            android:dividerHeight="1dp"
-            android:layout_marginTop="70dp"
-             />
+        <RelativeLayout
+            android:id="@+id/searches"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMovies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 </RelativeLayout>
