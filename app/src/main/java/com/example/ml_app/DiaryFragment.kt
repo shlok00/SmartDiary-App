@@ -59,7 +59,7 @@ class DiaryFragment : Fragment() {
                 startActivityForResult(intent,100)
             }
             catch(e: ActivityNotFoundException){
-                Toast.makeText(getActivity(), "Does not support mic", Toast.LENGTH_LONG).show()
+                Toast.makeText(getActivity(), "Does not support mic!", Toast.LENGTH_LONG).show()
             }
 
         }
