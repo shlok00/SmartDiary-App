@@ -1,84 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-<androidx.cardview.widget.CardView android:layout_margin="3dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="15dp">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/cards"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#08032b"
+        android:padding="8dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="155dp">
-
-                <ImageView
-                    android:id="@+id/imageViewc"
-                    android:background="@drawable/entryim3"
-                    android:layout_width="match_parent"
-                    android:scaleType="fitEnd"
-                    android:layout_height="155dp"
-                    />
-
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#000000"
-                >
-
-                <TextView
-                    android:id="@+id/textViewTitle"
-                    android:textSize="18sp"
-                    android:textColor="#ffffff"
-                    android:text="Captain Marvel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="English"
-                    android:textColor="#ffffff"
-                    android:id="@+id/textViewLanguage"
-                    android:layout_below="@id/textViewTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/gradheads"
+            android:fontFamily="casual"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
 
-            </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#000000"
-                android:padding="10dp"
-                >
+        <ImageButton
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/textborder2"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_delete_outline_24"></ImageButton>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="120dp"
-                    android:background="@drawable/buttons"
-                    android:text="EDIT" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/buttons"
-                    android:text="DELETE" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/del"
+            android:background="@drawable/textborder2"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_create_24"></ImageButton>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

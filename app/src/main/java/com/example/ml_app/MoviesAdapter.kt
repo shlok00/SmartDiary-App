@@ -3,6 +3,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -28,12 +29,10 @@ class MoviesAdapter(private val data: List<Movies>) : RecyclerView.Adapter<Movie
 
         fun bind(property: Movies){
             val title = view.findViewById(R.id.textViewTitle) as TextView
-            val description = view.findViewById(R.id.textViewLanguage) as TextView
+            val imageView = view.findViewById(R.id.cards) as RelativeLayout
+            //val imageView = view.findViewById(R.id.imageViewc) as ImageView
 
-            val imageView = view.findViewById(R.id.imageViewc) as ImageView
-
-            title.text = property.userId.toString()
-            description.text = property.title
+            title.text = "20 Feb"
 
             val l = listOf(R.drawable.entryim1,R.drawable.entryim2,R.drawable.entryim3,R.drawable.entryim4,R.drawable.entryim5)
             var f = l.random()
