@@ -2,27 +2,37 @@ package com.example.ml_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar()?.hide(); // hide the title bar
-        this.getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_main)
 
-        var button = findViewById(R.id.googlebutton) as Button
-        button.setOnClickListener{
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
-        }
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth.currentUser
+
+        /**If user is not authenticated, send him to SignInActivity to authenticate first.
+         * Else send him to DashboardActivity*/
+        Handler().postDelayed({
+            if(user != null){
+                val dashboardIntent = Intent(this, DashboardActivity::class.java)
+                startActivity(dashboardIntent)
+                finish()
+            }else{
+                val signInIntent = Intent(this, SignInActivity::class.java)
+                startActivity(signInIntent)
+                finish()
+            }
+        }, 2000)
 
     }
 }

@@ -6,10 +6,10 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlin.random.Random
-
-import org.w3c.dom.Text
+//import com.bumptech.glide.Glide
+//import kotlin.random.Random
+//
+//import org.w3c.dom.Text
 
 class MoviesAdapter(private val data: List<Movies>) : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>()  {
 
