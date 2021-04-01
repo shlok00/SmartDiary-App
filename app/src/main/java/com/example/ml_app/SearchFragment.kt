@@ -27,7 +27,6 @@ class SearchFragment : Fragment() {
 
         return inflater.inflate(R.layout.searchframe,
             container, false)
-
 }
 
     @SuppressLint("WrongConstant")

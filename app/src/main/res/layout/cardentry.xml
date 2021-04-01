@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:padding="10dp"
     android:layout_margin="5dp"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="15dp"
+    android:layout_height="100dp"
+    android:elevation="10dp"
+    >
 
     <RelativeLayout
         android:id="@+id/cards"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#08032b"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardgrad"
         android:padding="8dp">
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/gradheads"
-            android:fontFamily="casual"
+            android:background="@drawable/cardgrad"
+            android:fontFamily="@font/allan"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:textColor="#ffffff"
+            android:textColor="#070810"
             android:textSize="25sp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        >
+            android:textStyle="bold" />Z
 
         <ImageButton
             android:id="@+id/del"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginRight="10dp"
             android:background="@drawable/textborder2"
             android:padding="10dp"
@@ -50,11 +45,30 @@
             android:id="@+id/edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/del"
             android:background="@drawable/textborder2"
             android:padding="10dp"
             android:src="@drawable/ic_baseline_create_24"></ImageButton>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/textViewTitle"
+            >
+            <TextView
+                android:id="@+id/texts"
+                android:fontFamily="@font/allan"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/white"
+                android:maxLines="2"       />
+        </LinearLayout>
     </RelativeLayout>
+
+
 </androidx.cardview.widget.CardView>

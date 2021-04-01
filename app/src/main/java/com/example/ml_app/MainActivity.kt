@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.victor.loading.book.BookLoading
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +16,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar()?.hide();
         setContentView(R.layout.activity_main)
-
+        val bookLoading: BookLoading = findViewById(R.id.bookloading)
+        if(!bookLoading.isStart()){
+            bookLoading.start();
+        }
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
 
@@ -24,6 +30,7 @@ class MainActivity : AppCompatActivity() {
          * Else send him to DashboardActivity*/
         Handler().postDelayed({
             if(user != null){
+
                 val dashboardIntent = Intent(this, DashboardActivity::class.java)
                 startActivity(dashboardIntent)
                 finish()
@@ -32,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(signInIntent)
                 finish()
             }
-        }, 2000)
+        }, 4000)
 
     }
 }

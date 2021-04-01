@@ -17,13 +17,7 @@ class SettingsFragment : Fragment() {
                 container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val bookLoading: BookLoading = getView()?.findViewById(R.id.bookloading) as BookLoading
-        if(!bookLoading.isStart()){
-            bookLoading.start();
-        }
-    }
+
 
         companion object{
             @JvmStatic
