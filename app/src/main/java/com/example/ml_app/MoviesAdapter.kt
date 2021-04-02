@@ -50,34 +50,29 @@ class MoviesAdapter(private val data: List<Movies>) : RecyclerView.Adapter<Movie
 
                     isTextViewClicked = false;
                     desc.setEllipsize(TextUtils.TruncateAt.END);
-                    val layoutParams = cardhold.getLayoutParams()
+                    /*val layoutParams = cardhold.getLayoutParams()
                     layoutParams.height = 350
                     layoutParams.width = MATCH_PARENT
-                    cardhold.setLayoutParams(layoutParams)
+                    cardhold.setLayoutParams(layoutParams)*/
                 } else {
                     desc.setMaxLines(Integer.MAX_VALUE);
                     isTextViewClicked = true;
                     desc.setEllipsize(null);
-                    val layoutParams = cardhold.getLayoutParams()
-                    desc.measure(0, 0)
-                    val h: Int = desc.getMeasuredHeight()
-                    layoutParams.height = 600
-                    layoutParams.width = MATCH_PARENT
-                    cardhold.setLayoutParams(layoutParams)
+
                 }
             }
             
             title.text = "20 Feb"
             val descr ="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
             desc.text = descr
-            val l = listOf(
+           /* val l = listOf(
                 R.drawable.entryim1,
                 R.drawable.entryim2,
                 R.drawable.entryim3,
                 R.drawable.entryim5
             )
             var f = l.random()
-            imageView.setBackgroundResource(f);
+            desc.setBackgroundResource(f);*/
         }
     }
 
