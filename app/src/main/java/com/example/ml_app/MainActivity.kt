@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(signInIntent)
                 finish()
             }
-        }, 4000)
+        }, 5000)
 
     }
 }

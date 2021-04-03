@@ -1,6 +1,8 @@
 package com.example.ml_app
 
 import android.R.id.edit
+import android.app.AlertDialog
+import android.app.PendingIntent.getActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -65,14 +68,37 @@ class MoviesAdapter(private val data: List<Movies>) : RecyclerView.Adapter<Movie
             title.text = "20 Feb"
             val descr ="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
             desc.text = descr
-           /* val l = listOf(
-                R.drawable.entryim1,
-                R.drawable.entryim2,
-                R.drawable.entryim3,
-                R.drawable.entryim5
-            )
-            var f = l.random()
-            desc.setBackgroundResource(f);*/
+
+            val del = view.findViewById(R.id.del) as TextView
+
+            del.setOnClickListener {
+                val builder = AlertDialog.Builder(view.context)
+                //set title for alert dialog
+                builder.setTitle("Delete Entry")
+                //set message for alert dialog
+                builder.setMessage("Are you sure you want to delete the entry?")
+                builder.setIcon(android.R.drawable.ic_dialog_alert)
+                //performing positive action
+                builder.setPositiveButton("Yes"){dialogInterface , which ->
+                }
+                //performing cancel action
+                builder.setNeutralButton("No"){dialogInterface , which ->
+                }
+
+                // Create the AlertDialog
+                val alertDialog: AlertDialog = builder.create()
+                // Set other dialog properties
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
+            /* val l = listOf(
+                 R.drawable.entryim1,
+                 R.drawable.entryim2,
+                 R.drawable.entryim3,
+                 R.drawable.entryim5
+             )
+             var f = l.random()
+             desc.setBackgroundResource(f);*/
         }
     }
 

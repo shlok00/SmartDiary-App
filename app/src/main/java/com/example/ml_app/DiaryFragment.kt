@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,21 +21,26 @@ import com.google.mlkit.nl.translate.TranslatorOptions
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class DiaryFragment : Fragment() {
 
 
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        return inflater.inflate(R.layout.diaryframe,
-                container, false)
+        return inflater.inflate(
+            R.layout.diaryframe,
+            container, false
+        )
     }
 
     private val ttsc: TextToSpeech by lazy{
-    TextToSpeech(context!!.applicationContext , TextToSpeech.OnInitListener { status ->
+    TextToSpeech(context!!.applicationContext, TextToSpeech.OnInitListener { status ->
         if (status == TextToSpeech.SUCCESS) {
             ttsc.language = Locale.forLanguageTag("en")
         }
@@ -45,26 +51,32 @@ class DiaryFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val currentTime: String = SimpleDateFormat("EEE, d MMM yyyy, HH:mm aaa", Locale.getDefault()).format(Date())
+        val currentTime: String = SimpleDateFormat(
+            "EEE, d MMM yyyy, HH:mm aaa",
+            Locale.getDefault()
+        ).format(Date())
         val datehead : TextView = getView()?.findViewById(R.id.datehead) as TextView
         datehead.setText(currentTime)
         val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
         var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en")
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Start Speaking!")
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Start Speaking!")
         var micbutton = getView()?.findViewById(R.id.btnSpeak) as ImageButton
         micbutton.setOnClickListener {
             try{
-                startActivityForResult(intent,100)
+                startActivityForResult(intent, 100)
             }
-            catch(e: ActivityNotFoundException){
+            catch (e: ActivityNotFoundException){
                 Toast.makeText(getActivity(), "Does not support mic!", Toast.LENGTH_LONG).show()
             }
 
         }
 
-        var b=2
+        var isSpeakerClicked = false;
         var speakerbutton = getView()?.findViewById(R.id.btntext) as ImageButton
         speakerbutton.setOnClickListener {
             val textsp = speechv.text.toString().trim()
@@ -72,28 +84,32 @@ class DiaryFragment : Fragment() {
             if (textsp.isNotEmpty())
             {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                {
-                    if(b%2==0)
-                    {   b+=1
+                {   if (isSpeakerClicked)
+                    {   isSpeakerClicked = false
                         ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null, "a")
                         speakerbutton.setBackgroundResource(R.drawable.gradhin)
+
                     }
-                    else if(b%2!=0)
-                    {   b+=1
+                    else
+                    {   isSpeakerClicked = true
                         ttsc.stop()
                         speakerbutton.setBackgroundResource(R.drawable.gradients)
                     }
                      }
 
                 else
-                {ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null)}
+                {ttsc.speak(textsp, TextToSpeech.QUEUE_FLUSH, null)
+
+                }
             }
+
             else{
                 Toast.makeText(getActivity(), "No Text found", Toast.LENGTH_SHORT).show()
             }
         }
 
-        var a = 0
+
+        var isTransClicked = false
 
         val source = speechv.text.toString()
         val options = TranslatorOptions.Builder()
@@ -109,8 +125,8 @@ class DiaryFragment : Fragment() {
 
         var transbutton = getView()?.findViewById(R.id.btntran) as ImageButton
         transbutton.setOnClickListener {
-            if(a%2==0)
-            {   a+=1
+            if(isTransClicked)
+            {   isTransClicked = false
                 transbutton.setBackgroundResource(R.drawable.gradhin)
                    if(speechv.text.toString() != null){
                       // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
@@ -123,12 +139,12 @@ class DiaryFragment : Fragment() {
                             Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
                         }}
 
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"hi")
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "hi")
                 ttsc.language = Locale.forLanguageTag("hi")
 
             }
             else
-            {   a+=1
+            {   isTransClicked = true
                 transbutton.setBackgroundResource(R.drawable.gradients)
                 if(speechv.text.toString() != null){
                     // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
@@ -138,9 +154,13 @@ class DiaryFragment : Fragment() {
                                //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
                             }
                             .addOnFailureListener { exception ->
-                                Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    getActivity(),
+                                    "Translation error",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }}
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en")
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en")
                 ttsc.language = Locale.forLanguageTag("en")
 
             }
@@ -169,12 +189,14 @@ class DiaryFragment : Fragment() {
         val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
         when (requestCode)
         {
-            100 -> {if(resultCode== Activity.RESULT_OK && data!=null){
-                var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                var s = speechv.text.toString()
-                speechv.setText(s +" "+ result?.get(0))
+            100 -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                    var s = speechv.text.toString()
+                    speechv.setText(s + " " + result?.get(0))
 
-            }}
+                }
+            }
         }
     }
 
