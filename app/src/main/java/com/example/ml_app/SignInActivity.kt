@@ -23,6 +23,8 @@ class SignInActivity : AppCompatActivity() {
     }
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val githubSecret = "7781afee8a6f51c4fc44f943560cba171b6b006f"
+    private val githubId = "c7f03f56110e4196fc4d"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,8 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+//            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken("914627264845-6vs7i6cgeahf7t24caojbin28u10nivr.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
