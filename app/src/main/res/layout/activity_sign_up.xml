@@ -28,18 +28,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/gradheads"
-        android:text="WELCOME! LOGIN HERE"
+        android:text="WELCOME! REGISTER HERE"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:padding="@dimen/book_padding"
         android:layout_gravity="center"/>
+
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/user"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:background="@drawable/textborder"
+        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+        android:hint="ENTER USERNAME"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+    <EditText
+        android:id="@+id/regemail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/textborder"
         android:hint="ENTER EMAIL"
         android:drawableLeft="@drawable/ic_baseline_email_24"
@@ -50,10 +64,9 @@
         android:textColorHint="@color/white"
         />
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/regpassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:background="@drawable/textborder"
         android:hint="ENTER PASSWORD"
@@ -65,7 +78,7 @@
         />
 
     <Button
-        android:id="@+id/loginbut"
+        android:id="@+id/regbut"
         android:layout_width="150dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
@@ -73,16 +86,16 @@
         app:backgroundTint="@color/white"
         android:textColor="#000000"
         android:layout_gravity="center"
-        android:text="LOGIN"/>
+        android:text="SIGN-UP"/>
 
     <TextView
-        android:id="@+id/gotoreg"
+        android:id="@+id/gotologin"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:text="DON'T HAVE AN ACCOUNT? REGISTER HERE"
+        android:text="ALREADY HAVE AN ACCOUNT? LOGIN HERE"
         android:textColor="#FFFFFF"
-/>
+        />
 
 </LinearLayout>

@@ -44,10 +44,10 @@ class SignInActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         mAuth = FirebaseAuth.getInstance()
-
         sign_in_btn.setOnClickListener(){
-
-            signIn()
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
+            //signIn()
         }
     }
 
@@ -90,8 +90,7 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val intent = Intent(this, DashboardActivity::class.java)
-                    startActivity(intent)
+
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
                     Log.d("SignInActivity", "signInWithCredential:success")
 
