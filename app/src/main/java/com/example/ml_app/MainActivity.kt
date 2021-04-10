@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(dashboardIntent)
                 finish()
             }else{
-                val dashboardIntent = Intent(this, DashboardActivity::class.java)
-                startActivity(dashboardIntent)
-                finish()
-//                val signInIntent = Intent(this, SignInActivity::class.java)
-//                startActivity(signInIntent)
+//                val dashboardIntent = Intent(this, DashboardActivity::class.java)
+//                startActivity(dashboardIntent)
 //                finish()
+                val signInIntent = Intent(this, SignInActivity::class.java)
+                startActivity(signInIntent)
+                finish()
             }
         }, 5000)
 

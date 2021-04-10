@@ -12,7 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
 import com.example.ml_app.DiaryFragment.Companion.newInstance
-import com.example.ml_app.retrofit.MainActivityViewModel
+//import com.example.ml_app.retrofit.MainActivityViewModel
 import java.lang.reflect.Array.newInstance
 import java.util.*
 import android.content.Context
@@ -24,7 +24,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ml_app.R
 import com.example.ml_app.retrofit.ServicesSetterGetter
-import com.example.ml_app.retrofit.MainActivityRepository
+//import com.example.ml_app.retrofit.MainActivityRepository
 import com.example.ml_app.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -34,7 +34,7 @@ import retrofit2.Response
 public class DashboardActivity : AppCompatActivity() {
     //var voicetxt = findViewById(R.id.voiceInput) as TextView
 
-    lateinit var mainActivityViewModel: MainActivityViewModel
+//    lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);

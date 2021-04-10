@@ -9,9 +9,9 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 
 object RetrofitClient {
 
-    const val MainServer = "http://api.drfriday.in/api/user/"
+    private const val MainServer = "http://api.drfriday.in/api/user/" // Changed with NodeJS server
 
-    val retrofitClient: Retrofit.Builder by lazy {
+    private val retrofitClient: Retrofit.Builder by lazy {
 
         val levelType: Level
         if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
