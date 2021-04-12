@@ -34,9 +34,15 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+<<<<<<< Updated upstream
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
+=======
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+>>>>>>> Stashed changes
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
@@ -84,19 +90,19 @@ class SignInActivity : AppCompatActivity() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val intent = Intent(this, DashboardActivity::class.java)
-                    startActivity(intent)
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                    Log.d("SignInActivity", "signInWithCredential:success")
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        val intent = Intent(this, DashboardActivity::class.java)
+                        startActivity(intent)
+                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                        Log.d("SignInActivity", "signInWithCredential:success")
 
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
-                    Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show()
+                        Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
+                    }
                 }
-            }
     }
 }

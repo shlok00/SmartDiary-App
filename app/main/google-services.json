@@ -1,17 +1,43 @@
 {
   "project_info": {
     "project_number": "614896096686",
+    "firebase_url": "https://ml-audio-diary-c12c7-default-rtdb.firebaseio.com",
     "project_id": "ml-audio-diary-c12c7",
     "storage_bucket": "ml-audio-diary-c12c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-<<<<<<< Updated upstream
-        "mobilesdk_app_id": "1:914627264845:android:a9a7e868ae7eb2958e3704",
-=======
+        "mobilesdk_app_id": "1:614896096686:android:634110449a40181ef9643f",
+        "android_client_info": {
+          "package_name": "com.example.main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDst1p1OBjpVWDtcCaJsiW417mAfnt-5OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:614896096686:android:131911bdfaeb9dd0f9643f",
->>>>>>> Stashed changes
         "android_client_info": {
           "package_name": "com.example.ml_app"
         }
@@ -26,11 +52,7 @@
           }
         },
         {
-<<<<<<< Updated upstream
-          "client_id": "914627264845-fsdi9msghqdb81sfublvvg2b4mh2sabi.apps.googleusercontent.com",
-=======
           "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
->>>>>>> Stashed changes
           "client_type": 3
         }
       ],
@@ -43,11 +65,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-<<<<<<< Updated upstream
-              "client_id": "914627264845-fsdi9msghqdb81sfublvvg2b4mh2sabi.apps.googleusercontent.com",
-=======
               "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
->>>>>>> Stashed changes
               "client_type": 3
             }
           ]

@@ -14,6 +14,25 @@ import android.widget.TextView
 import com.example.ml_app.DiaryFragment.Companion.newInstance
 import java.lang.reflect.Array.newInstance
 import java.util.*
+<<<<<<< Updated upstream
+=======
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.ml_app.R
+//import com.example.ml_app.retrofit.ServicesSetterGetter
+//import com.example.ml_app.retrofit.MainActivityRepository
+import com.example.ml_app.retrofit.RetrofitClient
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.diaryframe.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+>>>>>>> Stashed changes
 
 public class DashboardActivity : AppCompatActivity() {
     //var voicetxt = findViewById(R.id.voiceInput) as TextView
@@ -24,39 +43,55 @@ public class DashboardActivity : AppCompatActivity() {
         getSupportActionBar()?.hide(); // hide the title bar
         this.getWindow().setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
         setContentView(R.layout.dashboard);
 
 
         val bottomNavigation = findViewById(R.id.bottomnav) as MeowBottomNavigation
         addFragment(DiaryFragment.newInstance())
         bottomNavigation.show(0)
-        bottomNavigation.add(MeowBottomNavigation.Model(0,R.drawable.ic_baseline_menu_book_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_baseline_search_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_person_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.ic_charts))
-        bottomNavigation.add(MeowBottomNavigation.Model(4,R.drawable.ic_baseline_settings_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(0, R.drawable.ic_baseline_menu_book_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_baseline_search_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_baseline_person_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_charts))
+        bottomNavigation.add(MeowBottomNavigation.Model(4, R.drawable.ic_baseline_settings_24))
 
         bottomNavigation.setOnClickMenuListener {
+<<<<<<< Updated upstream
             when(it.id){
                 0 -> {                    replaceFragment(DiaryFragment.newInstance())
+=======
+            when (it.id) {
+                0 -> {
+                    replaceFragment(newInstance())
+>>>>>>> Stashed changes
 
                 }
-                1 -> {                    replaceFragment(SearchFragment.newInstance())
+                1 -> {
+                    replaceFragment(SearchFragment.newInstance())
 
 
                 }
-                2 -> {                    replaceFragment(AnalyticsFragment.newInstance())
+                2 -> {
+                    replaceFragment(AnalyticsFragment.newInstance())
 
                 }
-                3 -> {                    replaceFragment(AnalyticsFragment.newInstance())
+                3 -> {
+                    replaceFragment(AnalyticsFragment.newInstance())
 
                 }
-                4 -> {                    replaceFragment(SettingsFragment.newInstance())
+                4 -> {
+                    replaceFragment(SettingsFragment.newInstance())
 
                 }
 
+<<<<<<< Updated upstream
                 else -> {                    replaceFragment(DiaryFragment.newInstance())
+=======
+                else -> {
+                    replaceFragment(newInstance())
+>>>>>>> Stashed changes
 
                 }
             }
@@ -64,17 +99,20 @@ public class DashboardActivity : AppCompatActivity() {
         }
 
 
-        }
-
-
-    private fun replaceFragment(fragment:Fragment){
-        val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.replace(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
     }
 
-    private fun addFragment(fragment:Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+        fragmentTransition.replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(Fragment::class.java.simpleName).commit()
     }
 
+    private fun addFragment(fragment: Fragment) {
+        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fragmentTransition.add(R.id.fragmentContainer, fragment)
+            .addToBackStack(Fragment::class.java.simpleName).commit()
+    }
 }
+
+

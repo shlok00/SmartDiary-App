@@ -12,8 +12,8 @@
         android:layout_height="966dp"
         android:layout_above="@+id/btnSpeakContainer"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="81dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="82dp"
         android:clickable="true"
         android:overScrollMode="ifContentScrolls"
         android:padding="20dp"
@@ -29,12 +29,13 @@
             android:hint="Type something!"
             android:padding="10dp"
             android:textColor="#EBCBFF"
-            android:textStyle="bold"
-            android:textSize="15sp">
+            android:textSize="15sp"
+            android:textStyle="bold">
 
         </EditText>
 
     </ScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -61,6 +62,7 @@
             android:layout_weight="1">
 
         </Space>
+
 
         <Button
             android:id="@+id/button2"

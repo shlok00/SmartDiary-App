@@ -4,8 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+<<<<<<< Updated upstream
+=======
+import android.graphics.Bitmap
+import android.net.Uri
+>>>>>>> Stashed changes
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
@@ -15,9 +21,16 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
+<<<<<<< Updated upstream
+=======
+import kotlinx.android.synthetic.main.diaryframe.*
+import java.io.InputStream
+>>>>>>> Stashed changes
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +50,10 @@ class DiaryFragment : Fragment() {
             R.layout.diaryframe,
             container, false
         )
+
     }
+
+    //public val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
 
     private val ttsc: TextToSpeech by lazy{
     TextToSpeech(context!!.applicationContext, TextToSpeech.OnInitListener { status ->
@@ -46,7 +62,7 @@ class DiaryFragment : Fragment() {
         }
 
     })}
-
+    public val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
     @SuppressLint("WrongViewCast")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +73,13 @@ class DiaryFragment : Fragment() {
         ).format(Date())
         val datehead : TextView = getView()?.findViewById(R.id.datehead) as TextView
         datehead.setText(currentTime)
+<<<<<<< Updated upstream
         val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
+=======
+
+        // Speech Recognition
+        //val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
+>>>>>>> Stashed changes
         var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(
             RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -184,6 +206,7 @@ class DiaryFragment : Fragment() {
     }
 
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val speechv : EditText = getView()?.findViewById(R.id.voiceInput) as EditText
@@ -192,13 +215,28 @@ class DiaryFragment : Fragment() {
             100 -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
                     var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+<<<<<<< Updated upstream
+=======
+//                    ArrayList<String> matches = bundle . getStringArrayList (RecognizerIntent.EXTRA_RESULTS)
+                    val audioUri: Uri? = data.getData()
+                    val contentResolver: ContentResolver? = activity?.contentResolver
+                    val filestream: InputStream? =
+                        audioUri?.let { contentResolver?.openInputStream(it) }
+
+>>>>>>> Stashed changes
                     var s = speechv.text.toString()
                     speechv.setText(s + " " + result?.get(0))
 
+
+                    }
+
                 }
             }
-        }
+
+
     }
+
+
 
     companion object{
         @JvmStatic
@@ -207,5 +245,35 @@ class DiaryFragment : Fragment() {
                     arguments = Bundle().apply {}
                 }
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        button.setOnClickListener{
+            savingText()
+        }
+    }
+
+    private fun savingText() {
+
+        var text = speechv.text.toString().trim()
+        if (text.isEmpty()) (
+                return
+                )
+
+        val savedtext = saveText(text)
+
+        val ref = FirebaseDatabase.getInstance().getReference("Texts")
+
+        val textId = ref.push().key
+
+        val FinalText = textId?.let { saveText(it, text) }
+
+        if (textId != null) {
+            ref.child(textId).setValue(text).addOnCompleteListener {
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
 }
