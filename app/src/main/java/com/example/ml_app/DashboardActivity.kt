@@ -23,7 +23,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ml_app.R
-import com.example.ml_app.retrofit.ServicesSetterGetter
 //import com.example.ml_app.retrofit.MainActivityRepository
 import com.example.ml_app.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -59,7 +58,7 @@ public class DashboardActivity : AppCompatActivity() {
         bottomNavigation.show(0)
         bottomNavigation.add(MeowBottomNavigation.Model(0,R.drawable.ic_baseline_menu_book_24))
         bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_baseline_search_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_person_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_mic_none_24))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.ic_charts))
         bottomNavigation.add(MeowBottomNavigation.Model(4,R.drawable.ic_baseline_settings_24))
 
@@ -75,7 +74,7 @@ public class DashboardActivity : AppCompatActivity() {
                 2 -> {                    replaceFragment(AnalyticsFragment.newInstance())
 
                 }
-                3 -> {                    replaceFragment(AnalyticsFragment.newInstance())
+                3 -> {                    replaceFragment(AIFragment.newInstance())
 
                 }
                 4 -> {                    replaceFragment(SettingsFragment.newInstance())

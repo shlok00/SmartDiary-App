@@ -2,6 +2,7 @@
 package com.example.ml_app
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.graphics.Movie
 import android.os.Bundle
 import android.text.Editable
@@ -18,6 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.security.AccessController.getContext
+import java.util.*
 
 class SearchFragment : Fragment() {
 
@@ -33,29 +35,31 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-/*
-        var recyclerView = getView()?.findViewById(R.id.recyclerViewMovies) as RecyclerView
+        var calbut = getView()?.findViewById(R.id.calbut) as Button
 
-        //adding a layoutmanager
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
+        calbut.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
 
 
-        //crating an arraylist to store users using the data class user
-        val users = ArrayList<Movies>()
+            val dpd = (getActivity()?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth -> },
+                    year,
+                    month,
+                    day
+                )
+            }).also {
 
-        //adding some dummy data to the list
-        users.add(Movies("Belal Khan", "Ranchi Jharkhand"))
-        users.add(Movies("Ramiz Khan", "Ranchi Jharkhand"))
-        users.add(Movies("Faiz Khan", "Ranchi Jharkhand"))
-        users.add(Movies("Yashar Khan", "Ranchi Jharkhand"))
+                it?.show()
+            }
+        }
 
-        //creating our adapter
-        val adapter = MoviesAdapter(users)
 
-        //now adding the adapter to recyclerview
-        recyclerView.adapter = adapter*/
-
-         fun showMovies(movies: List<Movies>) {
+        fun showMovies(movies: List<Movies>) {
             recyclerViewMovies.layoutManager = LinearLayoutManager(activity)
             recyclerViewMovies.adapter = MoviesAdapter(movies)}
 

@@ -19,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar()?.hide();
         setContentView(R.layout.activity_main)
+        val dashboardIntent = Intent(this, DashboardActivity::class.java)
+        startActivity(dashboardIntent)
+
+        /**If user is not authenticated, send him to SignInActivity to authenticate first.
+         * Else send him to DashboardActivity*/
+        /*
         val bookLoading: BookLoading = findViewById(R.id.bookloading)
         if(!bookLoading.isStart()){
             bookLoading.start();
@@ -26,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         val user = mAuth.currentUser
 
-        /**If user is not authenticated, send him to SignInActivity to authenticate first.
-         * Else send him to DashboardActivity*/
         Handler().postDelayed({
             if(user != null){
                 val dashboardIntent = Intent(this, DashboardActivity::class.java)
@@ -42,6 +46,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }, 5000)
-
+        */
     }
 }
