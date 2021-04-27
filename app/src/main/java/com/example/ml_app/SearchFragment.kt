@@ -7,6 +7,7 @@ import android.graphics.Movie
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import kotlinx.android.synthetic.main.searchframe.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,11 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.core.Context
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.searchframe.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +35,7 @@ class SearchFragment : Fragment() {
 
         return inflater.inflate(R.layout.searchframe,
             container, false)
+
 }
 
     @SuppressLint("WrongConstant")
@@ -56,6 +63,27 @@ class SearchFragment : Fragment() {
 
                 it?.show()
             }
+            textsList= mutableListOf()
+            listView = findViewById(android.R.id.listView)
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //val p0 = 0
+                    if(p0!!.exists()){
+                        textsList.clear()
+                        for(h in p0.children){
+                            val savetext = h.getValue(saveText::class.java)
+                            textsList.add(savetext!!)
+                        }
+                        val adapter = TextAdapter(applicationContext, R.layout.searchframe,textsList)
+                        listView.adapter = adapter
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
         }
 
 

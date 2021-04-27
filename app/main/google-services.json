@@ -1,10 +1,48 @@
 {
   "project_info": {
     "project_number": "614896096686",
+    "firebase_url": "https://ml-audio-diary-c12c7-default-rtdb.firebaseio.com",
     "project_id": "ml-audio-diary-c12c7",
     "storage_bucket": "ml-audio-diary-c12c7.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614896096686:android:634110449a40181ef9643f",
+        "android_client_info": {
+          "package_name": "com.example.main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614896096686-uakotjoj7j7htl5do4h6ora1at2h92en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.main",
+            "certificate_hash": "78cd2cf4ae36d8c98caa7d2c7d90d3990e906aec"
+          }
+        },
+        {
+          "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDst1p1OBjpVWDtcCaJsiW417mAfnt-5OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614896096686-ln23ati2i2hsc576h95go65uei4dca7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:614896096686:android:131911bdfaeb9dd0f9643f",

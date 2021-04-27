@@ -14,13 +14,18 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+public lateinit var ref: DatabaseReference
+public lateinit var textsList:MutableList<saveText>
+@SuppressLint("StaticFieldLeak")
+public lateinit var listView : ListView
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class DiaryFragment : Fragment() {
 
@@ -164,15 +169,43 @@ class DiaryFragment : Fragment() {
             }
 
         }
-
+        ref = FirebaseDatabase.getInstance().getReference("Textsaving")
         var clearbut = getView()?.findViewById(R.id.button2) as Button
         clearbut.setOnClickListener {
             var s = speechv.text.toString()
             speechv.setText("")
         }
 
+
+
+        fun savingText() {
+
+
+
+            val textst = speechv.text.toString()
+            if (textst.isEmpty()) (
+                    return
+                    )
+
+
+
+
+            val textId = ref.push().key
+
+
+            val savedText = saveText(datehead,textst)
+
+           if (textId != null) {
+                ref.child(textId).setValue(textst).addOnCompleteListener {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
         var savebut = getView()?.findViewById(R.id.button) as Button
         savebut.setOnClickListener {
+            savingText()
             var s = speechv.text.toString()
             speechv.setText("")
         }
