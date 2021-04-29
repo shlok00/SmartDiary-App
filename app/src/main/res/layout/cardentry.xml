@@ -37,30 +37,6 @@
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/del"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:padding="10dp"
-            android:text="DELETE"
-            android:textColor="#03a1fc"
-            android:textStyle="bold"
-
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/del"
-            android:padding="10dp"
-            android:textColor="#03a1fc"
-            android:textStyle="bold"
-            android:text="EDIT"
-            tools:ignore="MissingConstraints" />
 
 
             <TextView
@@ -69,12 +45,46 @@
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:layout_below="@id/textViewTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:background="@drawable/cardgrad2"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="hello"
                 android:maxLines="2"
                 tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/texts"
+            >
+
+            <TextView
+                android:id="@+id/del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:text="DELETE"
+                android:textColor="#03a1fc"
+                android:textStyle="bold"
+
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/del"
+                android:padding="10dp"
+                android:textColor="#03a1fc"
+                android:textStyle="bold"
+                android:text="EDIT"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

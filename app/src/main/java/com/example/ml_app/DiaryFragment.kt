@@ -180,25 +180,23 @@ class DiaryFragment : Fragment() {
 
         fun savingText() {
 
-
+            val currentTime: String = SimpleDateFormat(
+                "EEE, d MMM yyyy, HH:mm aaa",
+                Locale.getDefault()
+            ).format(Date())
 
             val textst = speechv.text.toString()
             if (textst.isEmpty()) (
                     return
                     )
 
-
-
-
             val textId = ref.push().key
 
-
-            val savedText = saveText(datehead,textst)
+            val savedText = saveText(currentTime,textst)
 
            if (textId != null) {
-                ref.child(textId).setValue(textst).addOnCompleteListener {
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-                }
+                ref.child(textId).child("diaryentry").setValue(textst)
+                ref.child(textId).child("time").setValue(currentTime)
             }
         }
 

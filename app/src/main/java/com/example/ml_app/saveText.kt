@@ -1,8 +1,6 @@
 package com.example.ml_app
 
-import android.widget.TextView
-
-class saveText(val dateUser: TextView, val text: String){
+class saveText(val dateUser: String, val text: String){
     constructor() : this("",""){
     }
 }
