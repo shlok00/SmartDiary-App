@@ -12,7 +12,7 @@ class AIFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.analyticsframe,
+        return inflater.inflate(R.layout.aiframe,
             container, false)
     }
     companion object {

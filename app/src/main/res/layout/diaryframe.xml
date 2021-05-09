@@ -50,10 +50,9 @@
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/buttons"
+            android:background="@drawable/gradients"
             android:text="SAVE"
-            app:backgroundTint="#fff"
-            android:textColor="#000"
+            android:textColor="#fff"
             />
         <Space
             android:layout_width="50dp"
@@ -71,10 +70,9 @@
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/buttons"
+            android:background="@drawable/gradients"
             android:text="CLEAR"
-            app:backgroundTint="#fff"
-            android:textColor="#000"/>
+            android:textColor="#fff"/>
         <Space
             android:layout_width="50dp"
             android:layout_height="1dp"

@@ -3,9 +3,9 @@
     android:shape="rectangle">
     <!--  Gradient Bg for listrow -->
     <gradient
-        android:startColor="#000000"
-        android:centerColor="#42109F"
-        android:endColor="#000000"
+        android:startColor="#504b80"
+        android:centerColor="#3a3569"
+        android:endColor="#343060"
         android:angle="90" />
 
 </shape>

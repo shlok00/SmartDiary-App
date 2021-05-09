@@ -58,7 +58,7 @@ public class DashboardActivity : AppCompatActivity() {
         bottomNavigation.show(0)
         bottomNavigation.add(MeowBottomNavigation.Model(0,R.drawable.ic_baseline_menu_book_24))
         bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_baseline_search_24))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_mic_none_24))
+        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_android_24))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.ic_charts))
         bottomNavigation.add(MeowBottomNavigation.Model(4,R.drawable.ic_baseline_settings_24))
 
@@ -71,10 +71,10 @@ public class DashboardActivity : AppCompatActivity() {
 
 
                 }
-                2 -> {                    replaceFragment(AnalyticsFragment.newInstance())
+                2 -> {                    replaceFragment(AIFragment.newInstance())
 
                 }
-                3 -> {                    replaceFragment(AIFragment.newInstance())
+                3 -> {                    replaceFragment(AnalyticsFragment.newInstance())
 
                 }
                 4 -> {                    replaceFragment(SettingsFragment.newInstance())

@@ -32,7 +32,7 @@ class SearchFragment : Fragment() {
         )
     }
 
-    @SuppressLint("WrongConstant")
+    @SuppressLint("WrongConstant", "ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
