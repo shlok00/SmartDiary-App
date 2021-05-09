@@ -11,21 +11,24 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
+import java.util.*
 
 
 //import com.bumptech.glide.Glide
 //import kotlin.random.Random
 //
 //import org.w3c.dom.Text
-
+var f = 0
 class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cardentry, parent, false)
         return MyViewHolder(v)
     }
 
     override fun getItemCount(): Int {
+        if(f==0){
+        Collections.reverse(data)
+        f=1}
         return data.size
     }
 
