@@ -18,7 +18,7 @@ import java.util.*
 //import kotlin.random.Random
 //
 //import org.w3c.dom.Text
-class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
+class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cardentry, parent, false)
         return MyViewHolder(v)
@@ -27,6 +27,7 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
     override fun getItemCount(): Int {
         return data.size
     }
+
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val d = data[position]
