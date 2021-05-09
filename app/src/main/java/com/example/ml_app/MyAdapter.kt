@@ -18,7 +18,6 @@ import java.util.*
 //import kotlin.random.Random
 //
 //import org.w3c.dom.Text
-var f = 0
 class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cardentry, parent, false)
@@ -26,9 +25,6 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
     }
 
     override fun getItemCount(): Int {
-        if(f==0){
-        Collections.reverse(data)
-        f=1}
         return data.size
     }
 
@@ -46,6 +42,7 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         holder.stats.setOnClickListener{
             if(statcheck == false)
             {   holder.piecard.setVisibility(View.VISIBLE)
+                holder.pieChart.startAnimation()
                 statcheck = true}
             else
             {   holder.piecard.setVisibility(View.GONE)
@@ -79,7 +76,6 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         // To animate the pie chart
 
         // To animate the pie chart
-        holder.pieChart.startAnimation()
 
         holder.desc.setOnClickListener {
             if (isTextViewClicked) {
@@ -128,6 +124,7 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
 
 
     }
+
 
 
 }

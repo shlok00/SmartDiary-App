@@ -2,10 +2,8 @@
 package com.example.ml_app
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.searchframe.*
 import java.util.*
 
 
@@ -71,7 +68,7 @@ class SearchFragment : Fragment() {
                         val user = userSnapshot.getValue(Entry::class.java)
                         userlist.add(user!!)
                     }
-
+                    Collections.reverse(userlist)
                     recyclerview.adapter = MyAdapter(userlist)
                 }
             }

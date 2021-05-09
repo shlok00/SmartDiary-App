@@ -26,7 +26,11 @@
             android:layout_height="match_parent"
             android:background="@drawable/textborder2"
             android:fontFamily="casual"
-            android:hint="Type something!"
+            android:hint="Type something! \nThis Diary Can be used for the following:
+            \n1. Write about your day-to-day life
+            \n2. Write about your agenda for the day
+            \n3. Take notes in a quick and efficient way
+            "
             android:padding="10dp"
             android:textColor="#EBCBFF"
             android:textStyle="bold"
