@@ -42,7 +42,7 @@
             <TextView
                 android:id="@+id/texts"
                 android:textSize="18sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:padding="10dp"
                 android:layout_below="@id/textViewTitle"
                 android:layout_width="match_parent"
@@ -54,11 +54,138 @@
                 android:maxLines="2"
                 tools:ignore="MissingConstraints" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewGraph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/texts"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:elevation="10dp"
+            android:backgroundTint="#2D2F71"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <org.eazegraph.lib.charts.PieChart
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/piechart"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:padding="6dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                     />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_vertical">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="#23C2D1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A"
+                            android:textColor="@color/white"
+                            android:paddingLeft="10dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="#1847BF"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="B"
+                            android:textColor="@color/white"
+                            android:paddingLeft="10dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="#7F30CC"/>
+
+                        <!--Text view to display C++ text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="C"
+                            android:textColor="@color/white"
+                            android:paddingLeft="10dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="#C318CF"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="D"
+                            android:textColor="@color/white"
+                            android:paddingLeft="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/texts"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_below="@+id/cardViewGraph"
             >
 
             <TextView
@@ -80,12 +207,26 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/gradheads"
+                android:background="@drawable/gradients"
                 android:layout_toLeftOf="@+id/del"
                 android:padding="5dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:text="EDIT"
+                tools:ignore="MissingConstraints"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/stats"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/gradhin"
+                android:layout_toLeftOf="@+id/del"
+                android:padding="5dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:text="STATS"
                 tools:ignore="MissingConstraints"
                 android:gravity="center_horizontal" />
         </LinearLayout>

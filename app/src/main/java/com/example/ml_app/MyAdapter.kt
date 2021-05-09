@@ -1,19 +1,16 @@
 package com.example.ml_app
 
-import android.R.id.edit
 import android.app.AlertDialog
-import android.app.PendingIntent.getActivity
+import android.graphics.Color
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import org.eazegraph.lib.charts.PieChart
+import org.eazegraph.lib.models.PieModel
 
 
 //import com.bumptech.glide.Glide
@@ -38,6 +35,48 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         holder.desc.text = d.diaryentry
         var isTextViewClicked = false
         holder.desc.setEllipsize(TextUtils.TruncateAt.END);
+
+        // Set the data and color to the pie chart
+
+        // Set the data and color to the pie chart
+        var statcheck = false
+        holder.stats.setOnClickListener{
+            if(statcheck == false)
+            {   holder.piecard.setVisibility(View.VISIBLE)
+                statcheck = true}
+            else
+            {   holder.piecard.setVisibility(View.GONE)
+                statcheck = false}
+        }
+        holder.pieChart.addPieSlice(
+            PieModel(
+                "A", 40F,
+                Color.parseColor("#23C2D1")
+            )
+        )
+        holder.pieChart.addPieSlice(
+            PieModel(
+                "B", 30F,
+                Color.parseColor("#1847BF")
+            )
+        )
+        holder.pieChart.addPieSlice(
+            PieModel(
+                "C", 15F,
+                Color.parseColor("#7F30CC")
+            )
+        )
+        holder.pieChart.addPieSlice(
+            PieModel(
+                "D", 15F,
+                Color.parseColor("#C318CF")
+            )
+        )
+
+        // To animate the pie chart
+
+        // To animate the pie chart
+        holder.pieChart.startAnimation()
 
         holder.desc.setOnClickListener {
             if (isTextViewClicked) {
@@ -78,6 +117,10 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
             val title = view.findViewById(R.id.textViewTitle) as TextView
             val desc = view.findViewById(R.id.texts) as TextView
         val del = view.findViewById(R.id.del) as TextView
+        val pieChart = view.findViewById(R.id.piechart) as PieChart
+        val stats = view.findViewById(R.id.stats) as TextView
+        val piecard = view.findViewById(R.id.cardViewGraph) as CardView
+
         val builder = AlertDialog.Builder(view.context)
 
 
@@ -85,4 +128,3 @@ class MyAdapter(private val data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
 
 
 }
-

@@ -54,7 +54,6 @@ class SearchFragment : Fragment() {
                     day
                 )
             }).also {
-
                 it?.show()
             }
         }
