@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
+import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
@@ -123,28 +124,42 @@ class DiaryFragment : Fragment() {
             .setTargetLanguage(TranslateLanguage.HINDI)
             .build()
         val enhi = Translation.getClient(options)
+        getLifecycle().addObserver(enhi)
+        var conditions = DownloadConditions.Builder()
+            .requireWifi()
+            .build()
+        enhi.downloadModelIfNeeded(conditions)
+            .addOnSuccessListener {
+                           }
+            .addOnFailureListener { exception ->
+                           }
         val options2 = TranslatorOptions.Builder()
             .setSourceLanguage(TranslateLanguage.HINDI)
             .setTargetLanguage(TranslateLanguage.ENGLISH)
             .build()
         val hien = Translation.getClient(options2)
-
+        getLifecycle().addObserver(hien)
+        hien.downloadModelIfNeeded(conditions)
+            .addOnSuccessListener {
+                           }
+            .addOnFailureListener { exception ->
+                            }
         var transbutton = getView()?.findViewById(R.id.btntran) as ImageButton
         transbutton.setOnClickListener {
 
 
-            if(a%2==0)
+            if(a==0 || a%2==0)
             {   a+=1
                 transbutton.setBackgroundResource(R.drawable.gradhin)
                 if(speechv.text.toString() != null){
-                    // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
                     enhi.translate(speechv.text.toString())
                         .addOnSuccessListener { translatedText ->
                             speechv.setText(translatedText)
                             //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
                         }
                         .addOnFailureListener { exception ->
-                            Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getActivity(), exception.toString(), Toast.LENGTH_SHORT).show()
                         }}
 
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"hi")

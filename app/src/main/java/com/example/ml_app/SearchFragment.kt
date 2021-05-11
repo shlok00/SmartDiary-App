@@ -93,9 +93,11 @@ class SearchFragment : Fragment() {
 
         searchbar.addTextChangedListener(object : TextWatcher {
 
+            @SuppressLint("WrongViewCast")
             override fun afterTextChanged(s: Editable) {
                 val filteredList = arrayListOf<Entry>()
                 //Log.e("lols", filteredList.toString())
+                val nsf = getView()?.findViewById(R.id.nsfw) as TextView
                 val root = FirebaseDatabase.getInstance().getReference().child("Textsaving")
                 root.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {

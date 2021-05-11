@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.PendingIntent.getActivity
 import android.graphics.Color
+import android.os.Build
+import android.speech.tts.TextToSpeech
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.net.*
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.beust.klaxon.PathMatcher
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.gson.GsonBuilder
@@ -40,14 +43,15 @@ import retrofit2.Retrofit.*
 
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.coroutines.coroutineContext
 
 
 //import com.bumptech.glide.Glide
 //import kotlin.random.Random
 //
 //import org.w3c.dom.Text
-var f =0
 class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.cardentry, parent, false)
         return MyViewHolder(v)
@@ -58,10 +62,14 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
     }
 
 
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val d = data[position]
         holder.title.text = d.time
         holder.desc.text = d.diaryentry
+
         //https://ssv-sentiment.herokuapp.com/getEmotion  secret a1Bz0
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://ssv-sentiment.herokuapp.com")
@@ -185,7 +193,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                 holder.desc.setMaxLines(2);
 
                 isTextViewClicked = false;
-                holder.desc.setEllipsize(TextUtils.TruncateAt.END);
+                holder.desc.setEllipsize(TextUtils.TruncateAt.END)
 
             } else {
                 holder.desc.setMaxLines(Integer.MAX_VALUE);
@@ -214,6 +222,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
 
         }
     }
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     class MyViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
             val title = view.findViewById(R.id.textViewTitle) as TextView
@@ -224,9 +233,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         val pieChart = view.findViewById(R.id.piechart) as PieChart
         val stats = view.findViewById(R.id.stats) as TextView
         val piecard = view.findViewById(R.id.cardViewGraph) as CardView
-
         val builder = AlertDialog.Builder(view.context)
-
 
     }
 
