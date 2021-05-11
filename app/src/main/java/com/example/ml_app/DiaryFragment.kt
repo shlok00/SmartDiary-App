@@ -16,6 +16,9 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
@@ -112,63 +115,62 @@ class DiaryFragment : Fragment() {
             }
         }
 
+       var a = 0
 
-        var isTransClicked = false
-
+        val source = speechv.text.toString()
         val options = TranslatorOptions.Builder()
-                .setSourceLanguage(TranslateLanguage.ENGLISH)
-                .setTargetLanguage(TranslateLanguage.HINDI)
-                .build()
+            .setSourceLanguage(TranslateLanguage.ENGLISH)
+            .setTargetLanguage(TranslateLanguage.HINDI)
+            .build()
         val enhi = Translation.getClient(options)
         val options2 = TranslatorOptions.Builder()
-                .setSourceLanguage(TranslateLanguage.HINDI)
-                .setTargetLanguage(TranslateLanguage.ENGLISH)
-                .build()
+            .setSourceLanguage(TranslateLanguage.HINDI)
+            .setTargetLanguage(TranslateLanguage.ENGLISH)
+            .build()
         val hien = Translation.getClient(options2)
 
         var transbutton = getView()?.findViewById(R.id.btntran) as ImageButton
         transbutton.setOnClickListener {
-            if(isTransClicked)
-            {   isTransClicked = false
+
+
+            if(a%2==0)
+            {   a+=1
                 transbutton.setBackgroundResource(R.drawable.gradhin)
                 if(speechv.text.toString() != null){
                     // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
                     enhi.translate(speechv.text.toString())
-                            .addOnSuccessListener { translatedText ->
-                                speechv.setText(translatedText)
-                                //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
-                            }
-                            .addOnFailureListener { exception ->
-                                Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
-                            }}
+                        .addOnSuccessListener { translatedText ->
+                            speechv.setText(translatedText)
+                            //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                        }}
 
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "hi")
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"hi")
                 ttsc.language = Locale.forLanguageTag("hi")
 
             }
             else
-            {   isTransClicked = true
+            {   a+=1
                 transbutton.setBackgroundResource(R.drawable.gradients)
                 if(speechv.text.toString() != null){
                     // Toast.makeText(getActivity(),speechv.text.toString(), Toast.LENGTH_SHORT).show()
                     hien.translate(speechv.text.toString())
-                            .addOnSuccessListener { translatedText ->
-                                speechv.setText(translatedText)
-                                //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
-                            }
-                            .addOnFailureListener { exception ->
-                                Toast.makeText(
-                                        getActivity(),
-                                        "Translation error",
-                                        Toast.LENGTH_SHORT
-                                ).show()
-                            }}
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en")
+                        .addOnSuccessListener { translatedText ->
+                            speechv.setText(translatedText)
+                            //Toast.makeText(getActivity(), translatedText, Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(getActivity(), "Translation error", Toast.LENGTH_SHORT).show()
+                        }}
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en")
                 ttsc.language = Locale.forLanguageTag("en")
 
             }
 
         }
+
         ref = FirebaseDatabase.getInstance().getReference("Textsaving")
         var clearbut = getView()?.findViewById(R.id.button2) as Button
         clearbut.setOnClickListener {

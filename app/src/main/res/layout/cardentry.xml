@@ -57,7 +57,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewGraph"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="240dp"
             android:layout_below="@id/texts"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -96,7 +96,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center_vertical">
 
                         <View
@@ -107,7 +107,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="A"
+                            android:text="Angry"
                             android:textColor="@color/white"
                             android:paddingLeft="10dp"/>
 
@@ -115,7 +115,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="5dp">
 
@@ -127,7 +127,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="B"
+                            android:text="Fear"
                             android:textColor="@color/white"
                             android:paddingLeft="10dp"/>
 
@@ -135,7 +135,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="5dp">
 
@@ -148,14 +148,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="C"
+                            android:text="Happy"
                             android:textColor="@color/white"
                             android:paddingLeft="10dp"/>
 
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="15dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="5dp">
 
@@ -167,7 +167,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="D"
+                            android:text="Sad"
+                            android:textColor="@color/white"
+                            android:paddingLeft="10dp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:background="#CA154E"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Surprise"
                             android:textColor="@color/white"
                             android:paddingLeft="10dp"/>
 
@@ -186,6 +205,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:layout_below="@+id/cardViewGraph"
+            android:id="@+id/actions"
             >
 
             <TextView
@@ -227,6 +247,41 @@
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:text="STATS"
+                tools:ignore="MissingConstraints"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/actions">
+
+            <TextView
+                android:id="@+id/emote"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:background="@drawable/happy"
+                android:padding="5dp"
+                android:text="#HAPPY"
+                android:textColor="#000"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/nsfw"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/neutral"
+                android:layout_toLeftOf="@+id/del"
+                android:padding="5dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="#SFW"
                 tools:ignore="MissingConstraints"
                 android:gravity="center_horizontal" />
         </LinearLayout>
