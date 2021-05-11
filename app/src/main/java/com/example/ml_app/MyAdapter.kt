@@ -88,7 +88,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                             val resp = response.body()?.string()
                             //holder.desc.text = resp
                             val diaryobj = JSONObject(resp)
-                            val nsfw = diaryobj.getBoolean("nsfw")
+                            val nsf0 = diaryobj.getBoolean("nsfw").toString()
                             val emot: JSONObject = diaryobj.getJSONObject("overall_emotion")
                             val happy = emot.getDouble("Happy")
                             val angry = emot.getDouble("Angry")
@@ -100,9 +100,13 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                             val maxe = emo.filterValues { it == maxValue }.keys.first()
                             val m = emo.filterValues { it == maxValue }.keys
                             //holder.desc.text = m.toString()
-                            if (nsfw == true)
+                            if (nsf0 == "true")
                             {holder.nsfw.text = "#NSFW"
                                 holder.nsfw.setBackgroundResource(R.drawable.nsfw)
+                            }
+                            else{
+                                holder.nsfw.text = "#SFW"
+                                holder.nsfw.setBackgroundResource(R.drawable.neutral)
                             }
                             if (maxValue.toString() == "0")
                             {holder.emote.text = "#NEUTRAL"
@@ -228,7 +232,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
             val title = view.findViewById(R.id.textViewTitle) as TextView
             val desc = view.findViewById(R.id.texts) as TextView
         val emote = view.findViewById(R.id.emote) as TextView
-        val nsfw = view.findViewById(R.id.nsfw) as TextView
+        val nsfw = view.findViewById(R.id.nsfwr) as TextView
         val del = view.findViewById(R.id.del) as TextView
         val pieChart = view.findViewById(R.id.piechart) as PieChart
         val stats = view.findViewById(R.id.stats) as TextView
