@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import java.net.*
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.beust.klaxon.PathMatcher
@@ -247,6 +248,46 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
 
 
         }
+
+        holder.edit.setOnClickListener {
+            holder.desc.setEnabled(true)
+        }
+
+        holder.save.setOnClickListener(){
+
+
+            holder.builder.setTitle("Update Entry")
+            holder.builder.setMessage("Are you sure you want to update the entry?")
+            holder.builder.setIcon(android.R.drawable.ic_dialog_alert)
+            holder.builder.setPositiveButton("Yes") { dialogInterface, which ->
+                val ref = FirebaseDatabase.getInstance().reference
+                val mnt: Query =
+                    ref.child("Textsaving").orderByChild("diaryentry").equalTo(d.diaryentry)
+                mnt.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (bt in dataSnapshot.children) {
+                            val gid=bt.key
+                            if (gid != null) {
+                                bt.ref.child("diaryentry").setValue(holder.textedited.text.toString())
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Log.e("TAG", "onCancelled", databaseError.toException())
+                    }
+                })
+
+            }
+            holder.builder.setNeutralButton("No") { dialogInterface, which ->
+            }
+
+            val alertDialog: AlertDialog = holder.builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
+
+        }
     }
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     class MyViewHolder(val view: View): RecyclerView.ViewHolder(view){
@@ -260,7 +301,9 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         val stats = view.findViewById(R.id.stats) as TextView
         val piecard = view.findViewById(R.id.cardViewGraph) as CardView
         val builder = AlertDialog.Builder(view.context)
-
+        val textedited = desc as EditText
+        val edit =  view.findViewById(R.id.edit) as TextView
+        val save =  view.findViewById(R.id.save) as TextView
     }
 
 

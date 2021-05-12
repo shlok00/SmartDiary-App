@@ -9,10 +9,10 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.victor.loading.book.BookLoading
-
+lateinit var mAuth: FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         /**If user is not authenticated, send him to SignInActivity to authenticate first.
          * Else send him to DashboardActivity*/
-        /*
+
         val bookLoading: BookLoading = findViewById(R.id.bookloading)
         if(!bookLoading.isStart()){
             bookLoading.start();
@@ -46,6 +46,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }, 5000)
-        */
+
     }
 }

@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
@@ -220,9 +221,13 @@ class DiaryFragment : Fragment() {
 
             val textId = ref.push().key
 
-            val savedText = saveText(currentTime,textst)
+            mAuth = FirebaseAuth.getInstance()
+            val user = mAuth.currentUser
+            val username = user.email
+            val savedText = saveText(username,currentTime,textst)
 
            if (textId != null) {
+                ref.child(textId!!).child("username").setValue(username.toString())
                 ref.child(textId).child("diaryentry").setValue(textst)
                 ref.child(textId).child("time").setValue(currentTime)
 
