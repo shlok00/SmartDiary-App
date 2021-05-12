@@ -110,7 +110,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                                 holder.nsfw.text = "#SFW"
                                 holder.nsfw.setBackgroundResource(R.drawable.neutral)
                             }
-                            if (maxValue.toString() == "0")
+                            if (m.toString() == "[happy, angry, sad, surprise, fear]")
                             {holder.emote.text = "#NEUTRAL"
                                 holder.emote.setBackgroundResource(R.drawable.neutral)
                             }
@@ -161,6 +161,12 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                                     PieModel(
                                             "Surprise", surprise.toFloat(),
                                             Color.parseColor("#CA154E")
+                                    )
+                            )
+                            holder.pieChart.addPieSlice(
+                                    PieModel(
+                                            "Neutral", surprise.toFloat(),
+                                            Color.parseColor("#ffffff")
                                     )
                             )
 
