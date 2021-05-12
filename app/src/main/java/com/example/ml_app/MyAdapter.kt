@@ -1,3 +1,4 @@
+
 package com.example.ml_app
 
 import android.annotation.SuppressLint
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.beust.klaxon.PathMatcher
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.database.*
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -114,7 +116,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                             }
                             else if (maxe == "fear")
                             {holder.emote.text = "#FEAR"
-                             holder.emote.setBackgroundResource(R.drawable.fear)}
+                                holder.emote.setBackgroundResource(R.drawable.fear)}
                             else if (maxe == "angry")
                             {holder.emote.text = "#ANGRY"
                                 holder.emote.setBackgroundResource(R.drawable.angry)}
@@ -215,6 +217,20 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
             holder.builder.setMessage("Are you sure you want to delete the entry?")
             holder.builder.setIcon(android.R.drawable.ic_dialog_alert)
             holder.builder.setPositiveButton("Yes") { dialogInterface, which ->
+                val ref = FirebaseDatabase.getInstance().reference
+                val applesQuery: Query =
+                        ref.child("Textsaving").orderByChild("diaryentry").equalTo(d.diaryentry)
+                applesQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (appleSnapshot in dataSnapshot.children) {
+                            appleSnapshot.ref.removeValue()
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Log.e("TAG", "onCancelled", databaseError.toException())
+                    }
+                })
             }
             holder.builder.setNeutralButton("No") { dialogInterface, which ->
             }
@@ -229,8 +245,8 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     class MyViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
-            val title = view.findViewById(R.id.textViewTitle) as TextView
-            val desc = view.findViewById(R.id.texts) as TextView
+        val title = view.findViewById(R.id.textViewTitle) as TextView
+        val desc = view.findViewById(R.id.texts) as TextView
         val emote = view.findViewById(R.id.emote) as TextView
         val nsfw = view.findViewById(R.id.nsfwr) as TextView
         val del = view.findViewById(R.id.del) as TextView

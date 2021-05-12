@@ -106,6 +106,7 @@
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
+            android:clickable="true"
             android:background="@drawable/gradients"
             android:padding="6dp"
             android:src="@drawable/ic_baseline_mic_none_24" />
@@ -121,6 +122,7 @@
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="100dp"
+            android:clickable="true"
             android:background="@drawable/gradients"
             android:padding="6dp"
             android:src="@drawable/ic_baseline_volume_down_24" />
@@ -136,6 +138,7 @@
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
+            android:clickable="true"
             android:background="@drawable/gradients"
             android:padding="6dp"
             android:src="@drawable/ic_baseline_g_translate_24" />
