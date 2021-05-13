@@ -7,7 +7,9 @@ import android.app.PendingIntent.getActivity
 import android.graphics.Color
 import android.os.Build
 import android.speech.tts.TextToSpeech
+import android.text.InputType
 import android.text.TextUtils
+import android.text.TextUtils.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.net.*
 import android.util.Log
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.beust.klaxon.PathMatcher
@@ -24,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.database.*
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import com.google.protobuf.DescriptorProtos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -183,8 +187,6 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         )
 
 
-        var isTextViewClicked = false
-        holder.desc.setEllipsize(TextUtils.TruncateAt.END);
 
         var statcheck = false
         holder.stats.setOnClickListener{
@@ -200,21 +202,26 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         // To animate the pie chart
 
         // To animate the pie chart
-
-        holder.desc.setOnClickListener {
+        var isTextViewClicked = false
+        holder.desc.setEllipsize(TruncateAt.END)
+        holder.arr.setOnClickListener {
+            holder.desc.setEnabled(true)
             if (isTextViewClicked) {
+                holder.arr.setImageResource(R.drawable.ic_baseline_arrow_drop_down_24)
                 holder.desc.setMaxLines(2);
-
                 isTextViewClicked = false;
-                holder.desc.setEllipsize(TextUtils.TruncateAt.END)
+                holder.desc.setEllipsize(TruncateAt.END)
 
             } else {
+                holder.arr.setImageResource(R.drawable.ic_baseline_arrow_drop_up_24)
                 holder.desc.setMaxLines(Integer.MAX_VALUE);
                 isTextViewClicked = true;
                 holder.desc.setEllipsize(null);
 
             }
+            holder.desc.setEnabled(false)
         }
+        //holder.desc.setEnabled(false)
 
 
 
@@ -250,7 +257,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         }
 
         holder.edit.setOnClickListener {
-            holder.desc.setEnabled(true)
+            holder.textedited.setEnabled(true)
         }
 
         holder.save.setOnClickListener(){
@@ -271,6 +278,8 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
                                 bt.ref.child("diaryentry").setValue(holder.textedited.text.toString())
                             }
                         }
+                        holder.textedited.setEnabled(false)
+
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
@@ -293,7 +302,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
     class MyViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
         val title = view.findViewById(R.id.textViewTitle) as TextView
-        val desc = view.findViewById(R.id.texts) as TextView
+        val textedited = view.findViewById(R.id.texts) as EditText
         val emote = view.findViewById(R.id.emote) as TextView
         val nsfw = view.findViewById(R.id.nsfwr) as TextView
         val del = view.findViewById(R.id.del) as TextView
@@ -301,9 +310,10 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         val stats = view.findViewById(R.id.stats) as TextView
         val piecard = view.findViewById(R.id.cardViewGraph) as CardView
         val builder = AlertDialog.Builder(view.context)
-        val textedited = desc as EditText
+        val desc = textedited as TextView
         val edit =  view.findViewById(R.id.edit) as TextView
         val save =  view.findViewById(R.id.save) as TextView
+        val arr = view.findViewById(R.id.arr) as ImageButton
     }
 
 

@@ -19,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar()?.hide();
         setContentView(R.layout.activity_main)
-        val dashboardIntent = Intent(this, DashboardActivity::class.java)
-        startActivity(dashboardIntent)
+
 
         /**If user is not authenticated, send him to SignInActivity to authenticate first.
          * Else send him to DashboardActivity*/
