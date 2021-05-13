@@ -53,9 +53,7 @@ class SignInActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         sign_in_btn.setOnClickListener(){
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
-            //signIn()
+            signIn()
         }
     }
 

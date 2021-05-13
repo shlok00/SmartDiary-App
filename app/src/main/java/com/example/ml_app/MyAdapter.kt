@@ -76,114 +76,80 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         val d = data[position]
         holder.title.text = d.time
         holder.desc.text = d.diaryentry
-
+        if (d.nsfw == "nsfw")
+        {  holder.nsfw.text = "#NSFW"
+           holder.nsfw.setBackgroundResource(R.drawable.nsfw)}
+        else{
+            holder.nsfw.text = "#SFW"
+            holder.nsfw.setBackgroundResource(R.drawable.neutral)
+        }
         //https://ssv-sentiment.herokuapp.com/getEmotion  secret a1Bz0
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://ssv-sentiment.herokuapp.com")
-                .build()
-        val api = retrofit.create(Sentiment::class.java)
-
-        val json = JSONObject()
-        json.put("text", d.diaryentry.toString())
-        json.put("secret", "a1Bz0")
-        val requestBody: RequestBody = RequestBody.create("application/json".toMediaTypeOrNull(), json.toString())
-        api.createentry(requestBody).enqueue(
-                object : Callback<ResponseBody> {
-                    @SuppressLint("ResourceAsColor")
-                    override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
-                        if (response!!.isSuccessful) {
-                            val resp = response.body()?.string()
-                            //holder.desc.text = resp
-                            val diaryobj = JSONObject(resp)
-                            val nsf0 = diaryobj.getBoolean("nsfw").toString()
-                            val emot: JSONObject = diaryobj.getJSONObject("overall_emotion")
-                            val happy = emot.getDouble("Happy")
-                            val angry = emot.getDouble("Angry")
-                            val sad = emot.getDouble("Sad")
-                            val surprise = emot.getDouble("Surprise")
-                            val fear = emot.getDouble("Fear")
-                            val emo = mapOf("happy" to happy,"angry" to angry,"sad" to sad,"surprise" to surprise,"fear" to fear)
-                            val maxValue = emo.values.max() // or max() depending on Kotlin version
-                            val maxe = emo.filterValues { it == maxValue }.keys.first()
-                            val m = emo.filterValues { it == maxValue }.keys
-                            //holder.desc.text = m.toString()
-                            if (nsf0 == "true")
-                            {holder.nsfw.text = "#NSFW"
-                                holder.nsfw.setBackgroundResource(R.drawable.nsfw)
-                            }
-                            else{
-                                holder.nsfw.text = "#SFW"
-                                holder.nsfw.setBackgroundResource(R.drawable.neutral)
-                            }
-                            if (m.toString() == "[happy, angry, sad, surprise, fear]")
-                            {holder.emote.text = "#NEUTRAL"
-                                holder.emote.setBackgroundResource(R.drawable.neutral)
-                            }
-                            else if (maxe == "fear")
-                            {holder.emote.text = "#FEAR"
-                                holder.emote.setBackgroundResource(R.drawable.fear)}
-                            else if (maxe == "angry")
-                            {holder.emote.text = "#ANGRY"
-                                holder.emote.setBackgroundResource(R.drawable.angry)}
-                            else if (maxe == "surprise")
-                            {holder.emote.text = "#SURPRISE"
-                                holder.emote.setBackgroundResource(R.drawable.surprise)}
-                            else if (maxe == "happy")
-                            {holder.emote.text = "#HAPPY"
-                                holder.emote.setBackgroundResource(R.drawable.happy)}
-                            else if (maxe == "sad")
-                            {holder.emote.text = "#SAD"
-                                holder.emote.setBackgroundResource(R.drawable.sad)}
-                            //holder.desc.text = emot.toString()
-                            // get employee name and salary
+        if (d.emotion == "neutral")
+        {   //emotionmain = "neutral"
+            holder.emote.text = "#NEUTRAL"
+            holder.emote.setBackgroundResource(R.drawable.neutral)
+        }
+        else if (d.emotion =="fear")
+        {   //emotionmain = "fear"
+            holder.emote.text = "#FEAR"
+            holder.emote.setBackgroundResource(R.drawable.fear)
+        }
+        else if (d.emotion == "angry")
+        { //emotionmain = "angry"
+            holder.emote.text = "#ANGRY"
+            holder.emote.setBackgroundResource(R.drawable.angry)
+        }
+        else if (d.emotion == "surprise")
+        { //emotionmain = "surprise"
+            holder.emote.text = "#SURPRISE"
+            holder.emote.setBackgroundResource(R.drawable.surprise)
+        }
+        else if (d.emotion == "happy")
+        { //emotionmain = "happy"
+            holder.emote.text = "#HAPPY"
+            holder.emote.setBackgroundResource(R.drawable.happy)
+        }
+        else if (d.emotion == "sad")
+        { //emotionmain = "sad"
+            holder.emote.text = "#SAD"
+            holder.emote.setBackgroundResource(R.drawable.sad)}
 
 
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Angry", angry.toFloat(),
-                                            Color.parseColor("#23C2D1")
-                                    )
-                            )
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Fear", fear.toFloat(),
-                                            Color.parseColor("#1847BF")
-                                    )
-                            )
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Happy", happy.toFloat(),
-                                            Color.parseColor("#7F30CC")
-                                    )
-                            )
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Sad", sad.toFloat(),
-                                            Color.parseColor("#C318CF")
-                                    )
-                            )
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Surprise", surprise.toFloat(),
-                                            Color.parseColor("#CA154E")
-                                    )
-                            )
-                            holder.pieChart.addPieSlice(
-                                    PieModel(
-                                            "Neutral", surprise.toFloat(),
-                                            Color.parseColor("#ffffff")
-                                    )
-                            )
-
-
-                        } else {
-
-                        }
-                    }
-                    override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                        Log.d("postreqerr", "failure--" + t.toString())
-                    }
-                }
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Angry", d.angry!!.toFloat(),
+                        Color.parseColor("#23C2D1")
+                )
+        )
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Fear", d.fear!!.toFloat(),
+                        Color.parseColor("#1847BF")
+                )
+        )
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Happy", d.happy!!.toFloat(),
+                        Color.parseColor("#7F30CC")
+                )
+        )
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Sad", d.sad!!.toFloat(),
+                        Color.parseColor("#C318CF")
+                )
+        )
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Surprise", d.surprise!!.toFloat(),
+                        Color.parseColor("#CA154E")
+                )
+        )
+        holder.pieChart.addPieSlice(
+                PieModel(
+                        "Neutral", d.surprise.toFloat(),
+                        Color.parseColor("#ffffff")
+                )
         )
 
 

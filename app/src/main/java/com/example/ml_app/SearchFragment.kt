@@ -109,6 +109,11 @@ class SearchFragment : Fragment() {
                                         filteredList.add(user!!)
                                     else if(user.time?.toLowerCase()?.contains(s.toString().toLowerCase()) == true)
                                         filteredList.add(user!!)
+                                    else if(user.emotion?.contains(s.toString()) == true)
+                                        filteredList.add(user!!)
+                                    else if(user.nsfw?.contains(s.toString()) == true)
+                                        filteredList.add(user!!)
+
                                 }
                             }
                             Collections.reverse(filteredList)
