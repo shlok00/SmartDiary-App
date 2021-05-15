@@ -16,8 +16,10 @@ import com.example.ml_app.DiaryFragment.Companion.newInstance
 import java.lang.reflect.Array.newInstance
 import java.util.*
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -35,13 +37,10 @@ public class DashboardActivity : AppCompatActivity() {
 
 //    lateinit var mainActivityViewModel: MainActivityViewModel
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar()?.hide(); // hide the title bar
-        this.getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.dashboard);
 
 

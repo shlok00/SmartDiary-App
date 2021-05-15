@@ -222,9 +222,9 @@ class DiaryFragment : Fragment() {
 
             val textId = ref.push().key
 
-            mAuth = FirebaseAuth.getInstance()
+           mAuth = FirebaseAuth.getInstance()
             val user = mAuth.currentUser
-            val username = user.email
+           val username = user.email
 
             val retrofit = Retrofit.Builder()
                     .baseUrl("https://ssv-sentiment.herokuapp.com")
@@ -302,6 +302,7 @@ class DiaryFragment : Fragment() {
 
                             }
                                 if (textId != null) {
+                                    //ref.child(textId!!).child("username").setValue("abc@e.com")
                                     ref.child(textId!!).child("username").setValue(username.toString())
                                     ref.child(textId).child("diaryentry").setValue(textst)
                                     ref.child(textId).child("time").setValue(currentTime)

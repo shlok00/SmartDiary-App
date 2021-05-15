@@ -1,9 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/setbg"
+    >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:textSize="30dp"
+        android:fontFamily="@font/abel"
+        android:textColor="@color/white"
+        android:text="THANK YOU FOR USING OUR SERVICE!"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/abel"
+    android:background="@drawable/cardgrad2"
+    android:padding="20dp"
+    android:textColor="@color/white"
+    android:textSize="20dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="fill_horizontal"
+    android:backgroundTint="#40a36be8"
+    android:text=">If you feel like seeking out help,\n use the numbers provided below. \n>It is never too late to try again.">
 
-</RelativeLayout>
+</TextView>
+    <TextView
+        android:id="@+id/hospnum"
+        android:layout_width="320dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="EMERGENCY HELPLINE"
+        android:paddingLeft="40dp"
+        android:drawableLeft="@drawable/ic_baseline_call_24"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:background="@drawable/textborder3"/>
+    <TextView
+        android:id="@+id/polnum"
+        android:layout_width="320dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp"
+        android:drawableLeft="@drawable/ic_baseline_call_24"
+        android:textSize="25dp"
+        android:text="POLICE STATION"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:background="@drawable/textborder3"/>
+    <TextView
+        android:id="@+id/mennum"
+        android:layout_width="320dp"
+        android:layout_margin="10dp"
+        android:paddingLeft="40dp"
+        android:drawableLeft="@drawable/ic_baseline_call_24"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="45dp"
+        android:textSize="20dp"
+        android:text="MENTAL HEALTH HELPLINE"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:padding="5dp"
+        android:background="@drawable/textborder3"/>
+
+    <Button
+        android:id="@+id/sign_out_btn"
+        android:layout_width="176dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/abel"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/buttons"
+        android:drawableLeft="@drawable/ic_google_icon"
+        android:paddingLeft="15dp"
+        android:text="LOGOUT"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:rippleColor="#7E7E7E" />
+</LinearLayout>
 

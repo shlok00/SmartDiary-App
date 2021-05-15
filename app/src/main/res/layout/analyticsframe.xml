@@ -1,8 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/texte"
+    android:background="@drawable/bg"
+
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/abel"
+        android:textStyle="italic"
+        android:text="LATELY YOU SEEM TO BE..."
+        android:textColor="#DEC6FF"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:id="@+id/emoim"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_happy"
+         />
+
+    <TextView
+        android:id="@+id/idemo"
+        android:layout_width="300dp"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/abel"
+        android:text="HAPPY!"
+        android:background="@drawable/gradients"
+        android:padding="5dp"
+        android:textColor="#ffffff"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <com.anychart.AnyChartView
+        android:id="@+id/any_chart_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_margin="10dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_gravity="center_horizontal"
+        />
 
 </LinearLayout>

@@ -57,6 +57,7 @@ import kotlin.coroutines.coroutineContext
 //import kotlin.random.Random
 //
 //import org.w3c.dom.Text
+public var emotlist = arrayListOf<String>()
 class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>()  {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -64,18 +65,20 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         return MyViewHolder(v)
     }
 
+
     override fun getItemCount(): Int {
         return data.size
     }
-
-
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val d = data[position]
         holder.title.text = d.time
         holder.desc.text = d.diaryentry
+        while (data.size + 1 != emotlist.size)
+        {
+            emotlist.plusAssign(d.emotion.toString())
+         break}
         if (d.nsfw == "nsfw")
         {  holder.nsfw.text = "#NSFW"
            holder.nsfw.setBackgroundResource(R.drawable.nsfw)}
@@ -280,6 +283,7 @@ class MyAdapter(private var data: List<Entry>) : RecyclerView.Adapter<MyAdapter.
         val edit =  view.findViewById(R.id.edit) as TextView
         val save =  view.findViewById(R.id.save) as TextView
         val arr = view.findViewById(R.id.arr) as ImageButton
+
     }
 
 

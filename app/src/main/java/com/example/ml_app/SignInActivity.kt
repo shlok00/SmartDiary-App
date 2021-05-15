@@ -54,6 +54,8 @@ class SignInActivity : AppCompatActivity() {
 
         sign_in_btn.setOnClickListener(){
             signIn()
+            //val intent = Intent(this, DashboardActivity::class.java)
+            //startActivity(intent)
         }
     }
 
